@@ -1,7 +1,10 @@
 import { Controller } from '../base/controller';
+import { LoginModule } from './login.module';
 
 export class LoginController extends Controller {
+    private module = new LoginModule();
+
     public async login() {
-        return this.response.status(200).send();
+        return await this.resolve(this.module.login());
     }
 }

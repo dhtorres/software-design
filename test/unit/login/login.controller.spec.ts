@@ -5,7 +5,7 @@ import { createRequest, createResponse } from 'node-mocks-http';
 describe('Login Controller', () => {
     let controller: LoginController;
     let request: Request;
-    let response: Response;
+    let response: any;
 
     beforeEach(() => {
         request = createRequest();
@@ -13,7 +13,7 @@ describe('Login Controller', () => {
         controller = new LoginController(request, response);
     });
 
-    test('my test', async () => {
+    test('login Return StatusCode 200 ', async () => {
         const result = await controller.login();
 
         expect(result.statusCode).toBe(200);
