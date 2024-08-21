@@ -24,20 +24,22 @@ export class UserValidator {
 
     public async isValidRol(request: Request, response: Response, next: any) {
         if (!request.headers.authorization)
-            return response
-                .status(401)
-                .send({ message: 'Authorization Header is Empty' });
+            return unauthorize(response, 'Authorization Header is Empty');
 
         let user: IToken;
         try {
             user = new Token().decode(request.headers.authorization) as IToken;
         } catch (error) {
-            return response.status(401).send({ message: 'Invalid Token' });
+            return unauthorize(response, 'Invalid Token');
         }
 
         if (user.rol !== Rol.ADMIN)
-            return response.status(401).send({ message: 'Action Not Allowed' });
+            return unauthorize(response, 'Action Not Allowed');
 
         next();
     }
+}
+
+function unauthorize(response: Response, message: string) {
+    return response.status(401).send({ message });
 }
