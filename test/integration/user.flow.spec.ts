@@ -7,7 +7,7 @@ describe('User Flow', () => {
     const body = {
         name: 'Daniel',
         lastName: 'Torres',
-        userName: 'dtorres',
+        username: 'dtorres',
         password: 'super-ultra-mega-password',
         email: 'mi-super-email@email.com',
         rol: 'ADMIN',

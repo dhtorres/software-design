@@ -4,7 +4,7 @@ import { Rol } from './rol.enum';
 export interface IUser {
     name: string;
     lastName: string;
-    userName: string;
+    username: string;
     password: string;
     email: string;
     rol: Rol;
@@ -13,7 +13,7 @@ export interface IUser {
 const schema = new Schema<IUser>({
     name: { type: String, required: true },
     lastName: { type: String, required: true },
-    userName: { type: String, required: true },
+    username: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true },
     rol: { type: String, required: true },

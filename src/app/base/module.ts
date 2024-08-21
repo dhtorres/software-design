@@ -12,4 +12,8 @@ export class Module {
     protected notFound(payload?: any): Payload {
         return { code: 404, data: payload };
     }
+
+    protected unauthorize(): Payload {
+        return { code: 401 };
+    }
 }

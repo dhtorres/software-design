@@ -5,6 +5,6 @@ export class LoginController extends Controller {
     private module = new LoginModule();
 
     public async login() {
-        return await this.resolve(this.module.login());
+        return await this.resolve(this.module.login(this.request.body));
     }
 }
