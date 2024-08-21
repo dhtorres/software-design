@@ -5,7 +5,7 @@ import { createRequest, createResponse } from 'node-mocks-http';
 describe('Login Controller', () => {
     let controller: LoginController;
     let request: Request;
-    let response: any;
+    let response: Response;
 
     beforeEach(() => {
         request = createRequest();

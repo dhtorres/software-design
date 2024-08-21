@@ -13,6 +13,7 @@ export class Controller {
             return this.response.status(res.code).send(res.data);
         } catch (error) {
             console.log(error);
+            return this.response.status(500).send();
         }
     }
 }

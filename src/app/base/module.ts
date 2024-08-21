@@ -5,6 +5,10 @@ export class Module {
         return { code: 200, data: payload };
     }
 
+    protected noContent(): Payload {
+        return { code: 204 };
+    }
+
     protected notFound(payload?: any): Payload {
         return { code: 404, data: payload };
     }

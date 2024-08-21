@@ -1,4 +1,4 @@
 export interface Payload {
     code: number;
-    data: any;
+    data?: any;
 }
