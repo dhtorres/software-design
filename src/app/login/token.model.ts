@@ -11,7 +11,8 @@ export class Token {
     }
 }
 
-interface IToken {
+export interface IToken {
+    username: string;
     name: string;
     lastName: string;
     email: string;

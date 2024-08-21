@@ -8,6 +8,7 @@ describe('Login Flow', () => {
     const body = { username: 'test', password: 'test' };
 
     const dbUser = {
+        username: 'dtorres',
         name: 'Daniel',
         lastName: 'Torres',
         email: 'admin@email.com',

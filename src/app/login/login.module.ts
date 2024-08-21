@@ -13,6 +13,7 @@ export class LoginModule extends Module {
         if (dbUser.password !== user.password) return this.unauthorize();
 
         const token = this.token.sign({
+            username: dbUser.username,
             name: dbUser.name,
             lastName: dbUser.lastName,
             email: dbUser.email,
