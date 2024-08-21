@@ -1,8 +1,10 @@
-import { Express } from "express";
-import { healthRoutes } from "../app/components/healthcheck/health.routes";
+import { Express } from 'express';
+import { healthRoutes } from '../app/health/health.routes';
+import { loginRoutes } from '../app/login/login.routes';
 
-const base = "/api/v1";
+export const base = '/api/v1';
 
 export function appRoutes(app: Express) {
-  healthRoutes(app, base);
+    healthRoutes(app, base);
+    loginRoutes(app, base);
 }
