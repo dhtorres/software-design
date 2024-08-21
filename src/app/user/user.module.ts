@@ -1,7 +1,6 @@
 import { Module } from '../base/module';
 import { IUser, User } from '../mongoose/user.model';
 
-//TODO-dtorres: la operación debe ser ejecutada solo por el admin
 //TODO-dtorres: el username y email son únicos; controlar excepción al insertar
 export class UserModule extends Module {
     public async create(user: IUser) {
