@@ -37,4 +37,15 @@ export class UserModule extends Module {
             return this.internalError(error);
         }
     }
+
+    public async delete(user: IUser) {
+        try {
+            const deleteUser = await this.userBuilder.build(user);
+            await deleteUser.deleteOne();
+
+            return this.noContent();
+        } catch (error) {
+            return this.internalError(error);
+        }
+    }
 }

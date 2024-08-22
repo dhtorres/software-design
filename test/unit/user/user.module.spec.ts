@@ -98,4 +98,28 @@ describe('User Module', () => {
 
         expect(result).toEqual(expected);
     });
+
+    test('delete Return No Content', async () => {
+        User.findOne = jest.fn().mockResolvedValue({ deleteOne() {} });
+
+        const result = await module.delete(user);
+
+        const expected = { code: 204 };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('delete Return Internal Error', async () => {
+        User.findOne = jest.fn().mockResolvedValue({
+            deleteOne() {
+                throw 'Test Exception';
+            },
+        });
+
+        const result = await module.delete(user);
+
+        const expected = { code: 500, data: 'Test Exception' };
+
+        expect(result).toEqual(expected);
+    });
 });

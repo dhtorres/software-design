@@ -11,4 +11,8 @@ export class UserController extends Controller {
     public async edit() {
         return await this.resolve(this.module.edit(this.request.body));
     }
+
+    public async delete() {
+        return await this.resolve(this.module.delete(this.request.body));
+    }
 }

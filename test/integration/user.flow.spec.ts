@@ -135,4 +135,18 @@ describe('User Flow', () => {
 
         expect(response.body).toEqual(updatedUser);
     });
+
+    test('delete Return StatusCode 204', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
+        Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        User.findOne = jest.fn().mockResolvedValue({ deleteOne() {} });
+
+        const response = await request(server)
+            .delete(url)
+            .set('authorization', token)
+            .send(body);
+
+        expect(response.statusCode).toBe(204);
+    });
 });

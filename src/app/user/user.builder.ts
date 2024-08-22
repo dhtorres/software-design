@@ -7,7 +7,7 @@ export class UserBuilder {
     private isSearchByUsername = false;
 
     public wantNew() {
-        if (this.isSearchByUsername || this.isSearchByEmail)
+        if (this.isSearchByUsername || this.isSearchByEmail || this.isUpdate)
             throw 'Violación de Contrato';
 
         this.isNew = true;
@@ -15,6 +15,8 @@ export class UserBuilder {
     }
 
     public wantUpdate() {
+        if (this.isNew) throw 'Violación de Contrato';
+
         this.isUpdate = true;
         return this;
     }
@@ -37,6 +39,8 @@ export class UserBuilder {
     public async build(user: IUser) {
         if (this.isNew) return this.new(user);
         if (this.isUpdate) return await this.update(user);
+
+        if (!this.isNew && !this.isUpdate) return await this.delete(user);
     }
 
     private new(user: IUser) {
@@ -56,7 +60,7 @@ export class UserBuilder {
     }
 
     private async findForEmail(user: IUser) {
-        const dbUser = await User.findOne({ email: user.email });
+        const dbUser = await this.searchByEmail(user.email);
 
         dbUser.name = user.name;
         dbUser.lastName = user.lastName;
@@ -69,7 +73,7 @@ export class UserBuilder {
     }
 
     private async findForUsername(user: IUser) {
-        const dbUser = await User.findOne({ username: user.username });
+        const dbUser = await this.searchByUsername(user.username);
 
         dbUser.name = user.name;
         dbUser.lastName = user.lastName;
@@ -79,5 +83,18 @@ export class UserBuilder {
         dbUser.rol = user.rol;
 
         return dbUser;
+    }
+
+    private async delete(user: IUser) {
+        if (this.isSearchByEmail) return await this.searchByEmail(user.email);
+        return await this.searchByUsername(user.username);
+    }
+
+    private async searchByEmail(email: string) {
+        return await User.findOne({ email });
+    }
+
+    private async searchByUsername(username: string) {
+        return await User.findOne({ username });
     }
 }

@@ -13,4 +13,8 @@ export function userRoutes(app: Express, prefix: string) {
     app.put(url, validator.isAdmin, validator.isValidUser, (req, res) =>
         new UserController(req, res).edit(),
     );
+
+    app.delete(url, validator.isAdmin, validator.isValidUser, (req, res) =>
+        new UserController(req, res).delete(),
+    );
 }
