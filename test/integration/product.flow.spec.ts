@@ -40,7 +40,7 @@ describe('Product Flow', () => {
         expect(response.statusCode).toBe(200);
     });
 
-    test.only('create Return Payload', async () => {
+    test('create Return Payload', async () => {
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
