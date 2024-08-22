@@ -7,7 +7,12 @@ export class Token {
     }
 
     public decode(token: string) {
-        return jwt.verify(token, JWT.KEY);
+        return jwt.verify(token, JWT.KEY); //?
+    }
+
+    public isValid(token: string) {
+        const decodedToken = jwt.decode(token);
+        return !!decodedToken;
     }
 }
 

@@ -6,6 +6,10 @@ import { IToken, Token } from '../../src/app/login/token.model';
 import { Rol } from '../../src/app/mongoose/rol.enum';
 
 describe('User Flow', () => {
+    const url = base + '/user';
+    const token = 'super-token';
+    let user: IToken;
+
     const body = {
         name: 'Daniel',
         lastName: 'Torres',
@@ -14,9 +18,6 @@ describe('User Flow', () => {
         email: 'mi-super-email@email.com',
         rol: 'ADMIN',
     };
-
-    const token = 'super-token';
-    let user: IToken;
 
     beforeEach(() => {
         user = {
@@ -29,17 +30,13 @@ describe('User Flow', () => {
     });
 
     test('create Return StatusCode 401 | Without Authorization', async () => {
-        const response = await request(server)
-            .post(base + '/user')
-            .send(body);
+        const response = await request(server).post(url).send(body);
 
         expect(response.statusCode).toBe(401);
     });
 
     test('create Return Error Message for 401 | Without Authorization', async () => {
-        const response = await request(server)
-            .post(base + '/user')
-            .send(body);
+        const response = await request(server).post(url).send(body);
 
         const expected = { message: 'Authorization Header is Empty' };
         expect(response.body).toEqual(expected);
@@ -47,7 +44,7 @@ describe('User Flow', () => {
 
     test('create Return StatusCode 401 | Invalid Token', async () => {
         const response = await request(server)
-            .post(base + '/user')
+            .post(url)
             .set('authorization', token)
             .send(body);
 
@@ -56,7 +53,7 @@ describe('User Flow', () => {
 
     test('create Return Error Message for 401 | Invalid Token', async () => {
         const response = await request(server)
-            .post(base + '/user')
+            .post(url)
             .set('authorization', token)
             .send(body);
 
@@ -69,7 +66,7 @@ describe('User Flow', () => {
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
         const response = await request(server)
-            .post(base + '/user')
+            .post(url)
             .set('authorization', token)
             .send(body);
 
@@ -79,9 +76,10 @@ describe('User Flow', () => {
     test('create Return Error Message for 401 | Action NOT Allowed', async () => {
         user.rol = Rol.CUSTOMER;
         Token.prototype.decode = jest.fn().mockReturnValue(user);
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
 
         const response = await request(server)
-            .post(base + '/user')
+            .post(url)
             .set('authorization', token)
             .send(body);
 
@@ -92,9 +90,10 @@ describe('User Flow', () => {
     test('create Return StatusCode 200', async () => {
         User.prototype.save = jest.fn().mockResolvedValue({});
         Token.prototype.decode = jest.fn().mockReturnValue(user);
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
 
         const response = await request(server)
-            .post(base + '/user')
+            .post(url)
             .set('authorization', token)
             .send(body);
 
@@ -104,9 +103,10 @@ describe('User Flow', () => {
     test('create Return Payload User', async () => {
         User.prototype.save = jest.fn().mockResolvedValue({});
         Token.prototype.decode = jest.fn().mockReturnValue(user);
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
 
         const response = await request(server)
-            .post(base + '/user')
+            .post(url)
             .set('authorization', token)
             .send(body);
 

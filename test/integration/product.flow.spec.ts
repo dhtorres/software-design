@@ -20,6 +20,7 @@ describe('Product Flow', () => {
     });
 
     test('create Return StatusCode 200', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
         const response = await request(server)
@@ -31,6 +32,7 @@ describe('Product Flow', () => {
     });
 
     test('create Return Payload', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
         const response = await request(server)
@@ -55,9 +57,7 @@ describe('Product Flow', () => {
     });
 
     test('create Return StatusCode 401 | Invalid Token', async () => {
-        Token.prototype.decode = jest.fn().mockImplementation(() => {
-            throw 'test';
-        });
+        Token.prototype.isValid = jest.fn().mockReturnValue(false);
 
         const response = await request(server)
             .post(url)
@@ -68,9 +68,7 @@ describe('Product Flow', () => {
     });
 
     test('create Return Message 401 | Invalid Token', async () => {
-        Token.prototype.decode = jest.fn().mockImplementation(() => {
-            throw 'test';
-        });
+        Token.prototype.isValid = jest.fn().mockReturnValue(false);
 
         const response = await request(server)
             .post(url)
@@ -83,6 +81,7 @@ describe('Product Flow', () => {
 
     test('create Return Message 401 | Action NOT Allowed', async () => {
         user.rol = Rol.CUSTOMER;
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
         const response = await request(server)
@@ -96,6 +95,7 @@ describe('Product Flow', () => {
 
     test('create Return StatusCode 401 | Action NOT Allowed', async () => {
         user.rol = Rol.CUSTOMER;
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
         const response = await request(server)

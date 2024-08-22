@@ -7,8 +7,8 @@ export function userRoutes(app: Express, prefix: string) {
 
     app.post(
         prefix + '/user',
-        validator.isValidRol,
-        validator.isValidCreate,
+        validator.isAdmin,
+        validator.isValidUser,
         (req, res) => new UserController(req, res).create(),
     );
 }

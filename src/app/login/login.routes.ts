@@ -1,9 +1,11 @@
 import { Express } from 'express';
 import { LoginController } from './login.controller';
-import { loginValidator } from './login.validator';
+import { LoginValidator } from './login.validator';
 
 export function loginRoutes(app: Express, prefix: string): void {
-    app.post(prefix + '/login', loginValidator, (req, res) =>
+    const validator = new LoginValidator();
+
+    app.post(prefix + '/login', validator.isValidLogin, (req, res) =>
         new LoginController(req, res).login(),
     );
 }

@@ -7,7 +7,7 @@ export function productRoutes(app: Express, prefix: string) {
 
     app.post(
         prefix + '/product',
-        validator.isValidRol,
+        validator.isAdmin,
         validator.isValidProduct,
         (req, res) => new ProductController(req, res).create(),
     );
