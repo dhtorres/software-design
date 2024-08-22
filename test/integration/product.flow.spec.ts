@@ -214,4 +214,18 @@ describe('Product Flow', () => {
 
         expect(response.body).toEqual(updatedProduct);
     });
+
+    test('create Return StatusCode 204', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
+        Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        Product.findOne = jest.fn().mockResolvedValue({ deleteOne() {} });
+
+        const response = await request(server)
+            .delete(url)
+            .set('authorization', token)
+            .send(body);
+
+        expect(response.statusCode).toBe(204);
+    });
 });

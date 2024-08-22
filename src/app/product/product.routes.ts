@@ -13,4 +13,8 @@ export function productRoutes(app: Express, prefix: string) {
     app.put(url, validator.isAdmin, validator.isValidProduct, (req, res) =>
         new ProductController(req, res).edit(),
     );
+
+    app.delete(url, validator.isAdmin, validator.isValidProduct, (req, res) =>
+        new ProductController(req, res).delete(),
+    );
 }

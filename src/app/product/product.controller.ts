@@ -11,4 +11,8 @@ export class ProductController extends Controller {
     public async edit() {
         return this.resolve(this.module.edit(this.request.body));
     }
+
+    public async delete() {
+        return this.resolve(this.module.delete(this.request.body));
+    }
 }

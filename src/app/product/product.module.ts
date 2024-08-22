@@ -31,4 +31,21 @@ export class ProductModule extends Module {
             return this.internalError(error);
         }
     }
+
+    public async delete(product: IProduct) {
+        const existProduct = await this.validator.exist(product.code);
+        if (!existProduct)
+            return this.notFound({ message: 'Product Not Found' });
+
+        try {
+            const dbProduct = await this.productBuilder
+                .wantUpdate()
+                .build(product);
+
+            await dbProduct.deleteOne();
+            return this.noContent();
+        } catch (error) {
+            return this.internalError(error);
+        }
+    }
 }

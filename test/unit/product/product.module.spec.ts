@@ -86,4 +86,40 @@ describe('Product Module', () => {
 
         expect(result).toEqual(expected);
     });
+
+    test('delete Return Not Found', async () => {
+        Product.findOne = jest.fn().mockResolvedValue(undefined);
+
+        const result = await module.delete(product);
+
+        const expected = { code: 404, data: { message: 'Product Not Found' } };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('delete Return No Content', async () => {
+        Product.findOne = jest.fn().mockResolvedValue({
+            deleteOne() {},
+        });
+
+        const result = await module.delete(product);
+
+        const expected = { code: 204 };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('delete Return Internal Error', async () => {
+        Product.findOne = jest.fn().mockResolvedValue({
+            deleteOne() {
+                throw 'Test Exception';
+            },
+        });
+
+        const result = await module.delete(product);
+
+        const expected = { code: 500, data: 'Test Exception' };
+
+        expect(result).toEqual(expected);
+    });
 });
