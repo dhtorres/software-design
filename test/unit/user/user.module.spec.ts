@@ -21,7 +21,10 @@ describe('User Module', () => {
     test('create Return User', async () => {
         User.findOne = jest.fn().mockResolvedValue(undefined);
 
-        const savedUser = { id: 'awesome-id' };
+        const savedUser = {
+            id: 'awesome-id',
+        };
+
         User.prototype.save = jest.fn().mockResolvedValue(savedUser);
 
         const result = await module.create(user);
@@ -70,6 +73,23 @@ describe('User Module', () => {
         });
 
         const result = await module.create(user);
+
+        const expected = {
+            code: 500,
+            data: 'Test Exception',
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('edit Return Internal Error', async () => {
+        User.findOne = jest.fn().mockResolvedValue({
+            async save() {
+                throw 'Test Exception';
+            },
+        });
+
+        const result = await module.edit(user);
 
         const expected = {
             code: 500,

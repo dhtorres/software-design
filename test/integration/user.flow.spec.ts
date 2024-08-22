@@ -116,4 +116,23 @@ describe('User Flow', () => {
 
         expect(response.body).toEqual(savedUser);
     });
+
+    test('edit Return Payload User', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
+        Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        const updatedUser = { id: 'updated-id' };
+        User.findOne = jest.fn().mockResolvedValue({
+            async save() {
+                return updatedUser;
+            },
+        });
+
+        const response = await request(server)
+            .put(url)
+            .set('authorization', token)
+            .send(body);
+
+        expect(response.body).toEqual(updatedUser);
+    });
 });

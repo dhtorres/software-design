@@ -1,10 +1,10 @@
 import { Module } from '../base/module';
 import { IUser } from '../mongoose/user.model';
-import { UserFactory } from './user.factory';
+import { UserBuilder } from './user.builder';
 import { UserValidator } from './user.validator';
 
 export class UserModule extends Module {
-    private userFactory = new UserFactory();
+    private userBuilder = new UserBuilder();
     private validator = new UserValidator();
 
     public async create(user: IUser) {
@@ -17,12 +17,24 @@ export class UserModule extends Module {
             return this.forbidden({ message: 'Email Already Exist' });
 
         try {
-            const savedUser = await this.userFactory.build(user).save();
-            return this.success(savedUser);
+            const savedUser = await this.userBuilder.wantNew().build(user);
+
+            return this.success(await savedUser.save());
         } catch (error) {
             return this.internalError(error);
         }
     }
 
-    public async edit(user: IUser) {}
+    public async edit(user: IUser) {
+        try {
+            const updatedUser = await this.userBuilder
+                .wantUpdate()
+                .findByEmail()
+                .build(user);
+
+            return this.success(await updatedUser.save());
+        } catch (error) {
+            return this.internalError(error);
+        }
+    }
 }
