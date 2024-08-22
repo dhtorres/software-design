@@ -1,19 +1,28 @@
 import { Module } from '../base/module';
-import { IUser, User } from '../mongoose/user.model';
+import { IUser } from '../mongoose/user.model';
+import { UserFactory } from './user.factory';
+import { UserValidator } from './user.validator';
 
-//TODO-dtorres: el username y email son únicos; controlar excepción al insertar
 export class UserModule extends Module {
-    public async create(user: IUser) {
-        const dbUser = new User({
-            name: user.name,
-            lastName: user.lastName,
-            email: user.email,
-            username: user.username,
-            password: user.password,
-            rol: user.rol,
-        });
+    private userFactory = new UserFactory();
+    private validator = new UserValidator();
 
-        const savedUser = await dbUser.save();
-        return this.success(savedUser);
+    public async create(user: IUser) {
+        const existUsername = await this.validator.existUsername(user);
+        if (existUsername)
+            return this.forbidden({ message: 'Username Already Exist' });
+
+        const existEmail = await this.validator.existEmail(user);
+        if (existEmail)
+            return this.forbidden({ message: 'Email Already Exist' });
+
+        try {
+            const savedUser = await this.userFactory.build(user).save();
+            return this.success(savedUser);
+        } catch (error) {
+            return this.internalError(error);
+        }
     }
+
+    public async edit(user: IUser) {}
 }

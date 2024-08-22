@@ -88,6 +88,7 @@ describe('User Flow', () => {
     });
 
     test('create Return StatusCode 200', async () => {
+        User.findOne = jest.fn().mockResolvedValue(undefined);
         User.prototype.save = jest.fn().mockResolvedValue({});
         Token.prototype.decode = jest.fn().mockReturnValue(user);
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
@@ -101,6 +102,7 @@ describe('User Flow', () => {
     });
 
     test('create Return Payload User', async () => {
+        User.findOne = jest.fn().mockResolvedValue(undefined);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
 
