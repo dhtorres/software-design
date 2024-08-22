@@ -5,6 +5,6 @@ export class ProductController extends Controller {
     private module = new ProductModule();
 
     public async create() {
-        return this.resolve(this.module.create());
+        return this.resolve(this.module.create(this.request.body));
     }
 }

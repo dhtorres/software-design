@@ -101,15 +101,17 @@ describe('User Flow', () => {
     });
 
     test('create Return Payload User', async () => {
-        User.prototype.save = jest.fn().mockResolvedValue({});
         Token.prototype.decode = jest.fn().mockReturnValue(user);
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
+
+        const savedUser = { id: 'super-id' };
+        User.prototype.save = jest.fn().mockResolvedValue(savedUser);
 
         const response = await request(server)
             .post(url)
             .set('authorization', token)
             .send(body);
 
-        expect(response.body).toEqual(body);
+        expect(response.body).toEqual(savedUser);
     });
 });

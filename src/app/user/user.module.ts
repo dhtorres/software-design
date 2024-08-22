@@ -13,7 +13,7 @@ export class UserModule extends Module {
             rol: user.rol,
         });
 
-        await dbUser.save();
-        return this.success(user);
+        const savedUser = await dbUser.save();
+        return this.success(savedUser);
     }
 }

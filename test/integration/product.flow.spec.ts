@@ -3,6 +3,7 @@ import { server } from '../../src/server/server';
 import { base } from '../../src/routes';
 import { IToken, Token } from '../../src/app/login/token.model';
 import { Rol } from '../../src/app/mongoose/rol.enum';
+import { Product } from '../../src/app/mongoose/product.model';
 
 describe('Product Flow', () => {
     const url = base + '/product';
@@ -29,6 +30,7 @@ describe('Product Flow', () => {
     test('create Return StatusCode 200', async () => {
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
+        Product.prototype.save = jest.fn().mockResolvedValue({});
 
         const response = await request(server)
             .post(url)
@@ -42,12 +44,15 @@ describe('Product Flow', () => {
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
+        const savedProduct = { id: 'super-id' };
+        Product.prototype.save = jest.fn().mockResolvedValue(savedProduct);
+
         const response = await request(server)
             .post(url)
             .set('authorization', token)
             .send(body);
 
-        expect(response.body).toEqual({ test: 'test' });
+        expect(response.body).toEqual(savedProduct);
     });
 
     test('create Return StatusCode 401 | Without Authorization', async () => {
