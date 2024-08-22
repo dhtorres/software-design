@@ -9,6 +9,13 @@ describe('Product Flow', () => {
     const token = 'super-token';
     let user: IToken;
 
+    const body = {
+        code: 'A1',
+        name: 'product super cool',
+        description: 'El producto que te hará feliz!',
+        stock: 10,
+    };
+
     beforeEach(() => {
         user = {
             username: 'dtorres',
@@ -26,7 +33,7 @@ describe('Product Flow', () => {
         const response = await request(server)
             .post(url)
             .set('authorization', token)
-            .send();
+            .send(body);
 
         expect(response.statusCode).toBe(200);
     });
@@ -38,7 +45,7 @@ describe('Product Flow', () => {
         const response = await request(server)
             .post(url)
             .set('authorization', token)
-            .send();
+            .send(body);
 
         expect(response.body).toEqual({ test: 'test' });
     });
@@ -104,5 +111,80 @@ describe('Product Flow', () => {
             .send();
 
         expect(response.statusCode).toBe(401);
+    });
+
+    test('create Return StatusCode 400 | Body Incorrect', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
+        Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        const response = await request(server)
+            .post(url)
+            .set('authorization', token)
+            .send();
+
+        expect(response.statusCode).toBe(400);
+    });
+
+    test('create Return Message 400 | Body Incorrect', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
+        Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        const response = await request(server)
+            .post(url)
+            .set('authorization', token)
+            .send();
+
+        const expected = [
+            {
+                location: 'body',
+                msg: 'Campo Requerido',
+                path: 'code',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'El Campo debe ser String',
+                path: 'code',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'Campo Requerido',
+                path: 'name',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'El Campo debe ser String',
+                path: 'name',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'Campo Requerido',
+                path: 'description',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'El Campo debe ser String',
+                path: 'description',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'Campo Requerido',
+                path: 'stock',
+                type: 'field',
+            },
+            {
+                location: 'body',
+                msg: 'El Campo debe ser Numérico',
+                path: 'stock',
+                type: 'field',
+            },
+        ];
+
+        expect(response.body).toEqual(expected);
     });
 });
