@@ -7,11 +7,13 @@ export class Token {
     }
 
     public decode(token: string) {
-        return jwt.verify(token, JWT.KEY); //?
+        const parsedToken = token.split(' ')[1];
+        return jwt.verify(parsedToken, JWT.KEY);
     }
 
     public isValid(token: string) {
-        const decodedToken = jwt.decode(token);
+        const parsedToken = token.split(' ')[1];
+        const decodedToken = jwt.decode(parsedToken);
         return !!decodedToken;
     }
 }

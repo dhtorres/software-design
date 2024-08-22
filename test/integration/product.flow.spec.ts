@@ -7,7 +7,7 @@ import { Product } from '../../src/app/mongoose/product.model';
 
 describe('Product Flow', () => {
     const url = base + '/product';
-    const token = 'super-token';
+    const token = 'Bearer super-token';
     let user: IToken;
 
     const body = {
@@ -40,7 +40,7 @@ describe('Product Flow', () => {
         expect(response.statusCode).toBe(200);
     });
 
-    test('create Return Payload', async () => {
+    test.only('create Return Payload', async () => {
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
 
