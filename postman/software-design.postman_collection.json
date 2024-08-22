@@ -1,0 +1,1460 @@
+{
+	"info": {
+		"_postman_id": "3d624e00-f39f-40fc-b2b2-da05b9b4270d",
+		"name": "software-design",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2739011"
+	},
+	"item": [
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/healthcheck",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"dtorres\",\n    \"password\":\"super-ultra-mega-secreta-pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"\",\n    \"password\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b1-tZAG/UitO7V4yor7O6exOQcU984\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:18:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"field\",\n        \"value\": \"\",\n        \"msg\": \"Campo Requerido\",\n        \"path\": \"username\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"value\": \"\",\n        \"msg\": \"Campo Requerido\",\n        \"path\": \"password\",\n        \"location\": \"body\"\n    }\n]"
+				},
+				{
+					"name": "404",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"a\",\n    \"password\":\"pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"login"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:18:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"dtorres\",\n    \"password\":\"super-ultra-mega-secreta-pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "255"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ff-lGH6amZByauOH0wRIHus8w8v+Bg\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:19:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImR0b3JyZXMiLCJuYW1lIjoiRGFuaWVsIiwibGFzdE5hbWUiOiJUb3JyZXMiLCJlbWFpbCI6InN1cGVyLWFkbWluQGVtYWlsLmNvbSIsInJvbCI6IkFETUlOIiwiaWF0IjoxNzI0MzMyNzU2fQ.L1rmGy1viAoA7ilLE1XDLed1X_zb9ynAVUirESeYFVg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 | customer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Juan\",\n    \"lastName\": \"Perez\",\n    \"email\": \"super-cliente@email.com\",\n    \"username\": \"jperez\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"CUSTOMER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-CHhaSYtuhxFFoxNYXNWBSs6eD9s\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Aug 2024 04:11:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Juan\",\n    \"lastName\": \"Perez\",\n    \"email\": \"super-cliente@email.com\",\n    \"username\": \"jperez\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"CUSTOMER\"\n}"
+				},
+				{
+					"name": "200 | admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "147"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"93-0SLZ23gQutFlve0p0uonisDCTJg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Aug 2024 04:12:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}"
+				},
+				{
+					"name": "403 | Username Already Exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"user"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"24-K1f6Rzt5FYW72h+ZiPM4AOvcStQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 16:33:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username Already Exist\"\n}"
+				}
+			]
+		},
+		{
+			"name": "user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Dany\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "186"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ba-GKnpqsKtBdFpm/Al2znTMMfmGVo\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 16:35:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"66c56911020a37fdc6297692\",\n    \"name\": \"Dany\",\n    \"lastName\": \"Torres\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"email\": \"super-admin@email.com\",\n    \"rol\": \"ADMIN\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Daniel\",\n    \"lastName\": \"Torres\",\n    \"email\": \"super-admin@email.com\",\n    \"username\": \"dtorres\",\n    \"password\": \"super-ultra-mega-secreta-pass\",\n    \"rol\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"user"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 17:12:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\":\"S3\",\n    \"name\":\"Producto Estelar\",\n    \"description\":\"Con este producto brillarás!\",\n    \"stock\":20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "401 | Authorizarion Empty",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2b-JfezdtnAhgG5Od2/nJFu+Acq31k\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:44:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Authorization Header is Empty\"\n}"
+				},
+				{
+					"name": "401 | Invalid Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1b-ptDm3ggC53pgcLgMnSH4sPfBUYY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:46:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid Token\"\n}"
+				},
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "640"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"280-JwZZji0rUqpJ+J3KVgvmmmPMucY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:46:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"field\",\n        \"msg\": \"Campo Requerido\",\n        \"path\": \"code\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"El Campo debe ser String\",\n        \"path\": \"code\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"Campo Requerido\",\n        \"path\": \"name\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"El Campo debe ser String\",\n        \"path\": \"name\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"Campo Requerido\",\n        \"path\": \"description\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"El Campo debe ser String\",\n        \"path\": \"description\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"Campo Requerido\",\n        \"path\": \"stock\",\n        \"location\": \"body\"\n    },\n    {\n        \"type\": \"field\",\n        \"msg\": \"El Campo debe ser Numérico\",\n        \"path\": \"stock\",\n        \"location\": \"body\"\n    }\n]"
+				},
+				{
+					"name": "200 | S1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\":\"S1\",\n    \"name\":\"Super Producto\",\n    \"description\":\"Este producto te hará feliz!\",\n    \"stock\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "135"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"87-0iOpT0NwgqA8iC40aKOEQon06xI\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:48:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"S1\",\n    \"name\": \"Super Producto\",\n    \"description\": \"Este producto te hará feliz!\",\n    \"stock\": 10,\n    \"_id\": \"66c741a19b6a7df1980b0e09\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "200 | S2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\":\"S2\",\n    \"name\":\"Producto Estrella\",\n    \"description\":\"Este producto te llevará al cielo!\",\n    \"stock\":15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"90-OX1VayA7bitD/+USHgEDRZd9dlM\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:57:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"S2\",\n    \"name\": \"Producto Estrella\",\n    \"description\": \"Este producto te llevará al cielo!\",\n    \"stock\": 15,\n    \"_id\": \"66c743b89b6a7df1980b0e0b\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "200 | S3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\":\"S3\",\n    \"name\":\"Producto Estelar\",\n    \"description\":\"Con este producto brillarás!\",\n    \"stock\":20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89-GeOpsSEruQyNmu288zgTYjUPlo8\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 13:58:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"S3\",\n    \"name\": \"Producto Estelar\",\n    \"description\": \"Con este producto brillarás!\",\n    \"stock\": 20,\n    \"_id\": \"66c743e99b6a7df1980b0e0d\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "purchase",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"purchases\": [\n        {\n            \"id\": \"super-id\",\n            \"code\": \"S1\",\n            \"quantity\": 1,\n            \"userId\": \"66c7718137ab534a74c12695\"\n        },\n        {\n            \"id\": \"super-id\",\n            \"code\": \"S2\",\n            \"quantity\": 1,\n            \"userId\": \"66c7718137ab534a74c12695\"\n        },\n        {\n            \"id\": \"super-id\",\n            \"code\": \"S3\",\n            \"quantity\": 1,\n            \"userId\": \"66c7718137ab534a74c12695\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/purchase",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"purchase"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"purchases\": [\n        {\n            \"id\": \"super-id\",\n            \"code\": \"S1\",\n            \"quantity\": 1,\n            \"userId\": \"66c7718137ab534a74c12695\"\n        },\n        {\n            \"id\": \"super-id\",\n            \"code\": \"S2\",\n            \"quantity\": 1,\n            \"userId\": \"66c7718137ab534a74c12695\"\n        },\n        {\n            \"id\": \"super-id\",\n            \"code\": \"S3\",\n            \"quantity\": 1,\n            \"userId\": \"66c7718137ab534a74c12695\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/purchase",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"purchase"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4b-arWxVg5dIjxTjh6sRuNK/YiazYw\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 20:03:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"code\": \"S1\",\n        \"stock\": 8\n    },\n    {\n        \"code\": \"S2\",\n        \"stock\": 13\n    },\n    {\n        \"code\": \"S3\",\n        \"stock\": 19\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\":\"S3\",\n    \"name\":\"Producto Estelar\",\n    \"description\":\"Con este producto brillarás!\",\n    \"stock\":20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\":\"S3\",\n    \"name\":\"Producto Estelar Modificado\",\n    \"description\":\"Con este producto brillarás!\",\n    \"stock\":20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-1/+jp4G4Q8YGN19P6o231p7fk04\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 18:10:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"66c743e99b6a7df1980b0e0d\",\n    \"code\": \"S3\",\n    \"name\": \"Producto Estelar Modificado\",\n    \"description\": \"Con este producto brillarás!\",\n    \"stock\": 20,\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"code\":\"S3\",\n    \"name\":\"Producto Estelar\",\n    \"description\":\"Con este producto brillarás!\",\n    \"stock\":20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "204",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\":\"S3\",\n    \"name\":\"Producto Estelar\",\n    \"description\":\"Con este producto brillarás!\",\n    \"stock\":20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 18:23:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{prefix}}/{{version}}/product",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"{{version}}",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{prefix}}/{{version}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"{{version}}",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "420"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1a4-qi6rBc8PBnho6FEf4Ak6oYmhiBw\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Aug 2024 18:43:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"66c741a19b6a7df1980b0e09\",\n        \"code\": \"S1\",\n        \"name\": \"Super Producto\",\n        \"description\": \"Este producto te hará feliz!\",\n        \"stock\": 10,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"66c743b89b6a7df1980b0e0b\",\n        \"code\": \"S2\",\n        \"name\": \"Producto Estrella\",\n        \"description\": \"Este producto te llevará al cielo!\",\n        \"stock\": 15,\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"66c7825039da64059c83b385\",\n        \"code\": \"S3\",\n        \"name\": \"Producto Estelar\",\n        \"description\": \"Con este producto brillarás!\",\n        \"stock\": 20,\n        \"__v\": 0\n    }\n]"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
