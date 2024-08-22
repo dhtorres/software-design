@@ -17,4 +17,8 @@ export function productRoutes(app: Express, prefix: string) {
     app.delete(url, validator.isAdmin, validator.isValidProduct, (req, res) =>
         new ProductController(req, res).delete(),
     );
+
+    app.get(url, validator.isAdmin, (req, res) => {
+        new ProductController(req, res).getAll();
+    });
 }

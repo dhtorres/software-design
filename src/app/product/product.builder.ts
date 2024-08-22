@@ -44,4 +44,8 @@ export class ProductBuilder {
 
         return dbProduct;
     }
+
+    public async getAll() {
+        return await Product.find();
+    }
 }

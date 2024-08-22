@@ -48,4 +48,13 @@ export class ProductModule extends Module {
             return this.internalError(error);
         }
     }
+
+    public async getAll() {
+        try {
+            const products = await this.productBuilder.getAll();
+            return this.success(products);
+        } catch (error) {
+            return this.internalError(error);
+        }
+    }
 }
