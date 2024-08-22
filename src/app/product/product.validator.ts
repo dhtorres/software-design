@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Validator } from '../base/validator';
 import { body } from 'express-validator';
+import { Product } from '../mongoose/product.model';
 
 export class ProductValidator extends Validator {
     public isValidProduct(request: Request, response: Response, next: any) {
@@ -28,5 +29,10 @@ export class ProductValidator extends Validator {
         ];
 
         return super.validateRequest(validations, request, response, next);
+    }
+
+    public async exist(code: string): Promise<boolean> {
+        const product = await Product.findOne({ code });
+        return !!product;
     }
 }

@@ -3,12 +3,10 @@ import { ProductValidator } from './product.validator';
 import { ProductController } from './product.controller';
 
 export function productRoutes(app: Express, prefix: string) {
+    const url = prefix + '/product';
     const validator = new ProductValidator();
 
-    app.post(
-        prefix + '/product',
-        validator.isAdmin,
-        validator.isValidProduct,
-        (req, res) => new ProductController(req, res).create(),
+    app.post(url, validator.isAdmin, validator.isValidProduct, (req, res) =>
+        new ProductController(req, res).create(),
     );
 }

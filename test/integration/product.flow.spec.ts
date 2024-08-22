@@ -30,6 +30,8 @@ describe('Product Flow', () => {
     test('create Return StatusCode 200', async () => {
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        Product.findOne = jest.fn().mockResolvedValue(undefined);
         Product.prototype.save = jest.fn().mockResolvedValue({});
 
         const response = await request(server)
@@ -43,6 +45,7 @@ describe('Product Flow', () => {
     test('create Return Payload', async () => {
         Token.prototype.isValid = jest.fn().mockReturnValue(true);
         Token.prototype.decode = jest.fn().mockReturnValue(user);
+        Product.findOne = jest.fn().mockResolvedValue(undefined);
 
         const savedProduct = { id: 'super-id' };
         Product.prototype.save = jest.fn().mockResolvedValue(savedProduct);
