@@ -195,4 +195,23 @@ describe('Product Flow', () => {
 
         expect(response.body).toEqual(expected);
     });
+
+    test('edit Return Payload', async () => {
+        Token.prototype.isValid = jest.fn().mockReturnValue(true);
+        Token.prototype.decode = jest.fn().mockReturnValue(user);
+
+        const updatedProduct = { id: 'updated-id' };
+        Product.findOne = jest.fn().mockResolvedValue({
+            save() {
+                return updatedProduct;
+            },
+        });
+
+        const response = await request(server)
+            .put(url)
+            .set('authorization', token)
+            .send(body);
+
+        expect(response.body).toEqual(updatedProduct);
+    });
 });

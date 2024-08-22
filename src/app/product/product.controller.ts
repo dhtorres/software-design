@@ -7,4 +7,8 @@ export class ProductController extends Controller {
     public async create() {
         return this.resolve(this.module.create(this.request.body));
     }
+
+    public async edit() {
+        return this.resolve(this.module.edit(this.request.body));
+    }
 }

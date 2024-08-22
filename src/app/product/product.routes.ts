@@ -9,4 +9,8 @@ export function productRoutes(app: Express, prefix: string) {
     app.post(url, validator.isAdmin, validator.isValidProduct, (req, res) =>
         new ProductController(req, res).create(),
     );
+
+    app.put(url, validator.isAdmin, validator.isValidProduct, (req, res) =>
+        new ProductController(req, res).edit(),
+    );
 }

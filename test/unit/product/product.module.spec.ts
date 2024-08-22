@@ -4,6 +4,13 @@ import { ProductModule } from '../../../src/app/product/product.module';
 describe('Product Module', () => {
     let module: ProductModule;
 
+    const product: IProduct = {
+        code: 'S1',
+        name: 'Mock Name',
+        description: 'Mock Description',
+        stock: 0,
+    };
+
     beforeEach(() => {
         module = new ProductModule();
     });
@@ -31,19 +38,51 @@ describe('Product Module', () => {
     test('create Return Forbidden', async () => {
         Product.findOne = jest.fn().mockResolvedValue({});
 
-        const product: IProduct = {
-            code: 'S1',
-            name: 'Mock Name',
-            description: 'Mock Description',
-            stock: 0,
-        };
-
         const result = await module.create(product);
 
         const expected = {
             code: 403,
             data: { message: 'Product Already Exist' },
         };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('edit Return Success', async () => {
+        const updatedProduct = { id: 'updated-id' };
+        Product.findOne = jest.fn().mockResolvedValue({
+            save() {
+                return updatedProduct;
+            },
+        });
+
+        const result = await module.edit(product);
+
+        const expected = { code: 200, data: updatedProduct };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('edit Return Not Found', async () => {
+        Product.findOne = jest.fn().mockResolvedValue(undefined);
+
+        const result = await module.edit(product);
+
+        const expected = { code: 404, data: { message: 'Product Not Found' } };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('edit Return Internal Error', async () => {
+        Product.findOne = jest.fn().mockResolvedValue({
+            save() {
+                throw 'Test Exception';
+            },
+        });
+
+        const result = await module.edit(product);
+
+        const expected = { code: 500, data: 'Test Exception' };
 
         expect(result).toEqual(expected);
     });
