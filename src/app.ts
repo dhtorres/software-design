@@ -1,5 +1,5 @@
 import { server } from './server/server';
-import { APPLICATION } from './environment/environment';
+import { APPLICATION, MONGO } from './environment/environment';
 import { connect } from 'mongoose';
 
 async function main() {
@@ -7,7 +7,7 @@ async function main() {
         server.listen(APPLICATION.PORT);
         console.log(`Server listening on port ${APPLICATION.PORT}`);
 
-        await connect('mongodb://localhost:27017/software-design');
+        await connect(MONGO.CONNECTION_STRING);
     } catch (error) {
         console.log(error);
     }

@@ -1,3 +1,4 @@
+import { contract } from '../base/contract';
 import { IUser, User } from '../mongoose/user.model';
 
 export class UserBuilder {
@@ -7,30 +8,32 @@ export class UserBuilder {
     private isSearchByUsername = false;
 
     public wantNew() {
-        if (this.isSearchByUsername || this.isSearchByEmail || this.isUpdate)
-            throw 'Violación de Contrato';
+        contract.mustBeFalse(this.isSearchByUsername);
+        contract.mustBeFalse(this.isSearchByEmail);
+        contract.mustBeFalse(this.isUpdate);
 
         this.isNew = true;
         return this;
     }
 
     public wantUpdate() {
-        if (this.isNew) throw 'Violación de Contrato';
+        contract.mustBeFalse(this.isNew);
 
         this.isUpdate = true;
         return this;
     }
 
     public findByEmail() {
-        if (this.isSearchByUsername || this.isNew)
-            throw 'Violación de Contrato';
+        contract.mustBeFalse(this.isNew);
+        contract.mustBeFalse(this.isSearchByUsername);
 
         this.isSearchByEmail = true;
         return this;
     }
 
     public findByUsername() {
-        if (this.isSearchByEmail || this.isNew) throw 'Violación de Contrato';
+        contract.mustBeFalse(this.isSearchByEmail);
+        contract.mustBeFalse(this.isNew);
 
         this.isSearchByUsername = true;
         return this;

@@ -8,3 +8,7 @@ export const APPLICATION = {
 export const JWT = {
     KEY: process.env.JWT_KEY,
 };
+
+export const MONGO = {
+    CONNECTION_STRING: process.env.CONNECTION_STRING,
+};
